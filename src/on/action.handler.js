@@ -38,9 +38,12 @@ bot.on("message:text", async (ctx) => {
   try {
     const text = ctx.message.text.trim(); 
     console.log("Received text:", text);  
+    console.log("Message from:", ctx.from);
+    console.log("Message context:", ctx.message);
     const user_id = ctx.update.message.from.id;
 
     let user = await User.findOne({ user_id });
+    console.log("Found user:", user);
 
     if (!user) {
       const newUser = new User({
@@ -109,11 +112,6 @@ bot.on("message:text", async (ctx) => {
       case "🧑‍🤝‍🧑 Foydalanuvchi ro'yxati":
       case "🧑‍🤝‍🧑 Список пользователей":
         await handleUserList(ctx, lang);
-        break;
-
-      case "📣 Xabarlar":
-      case "📣 Сообщения":
-        await messagesSection(ctx, lang);
         break;
 
       case "📬 Yangi xabarlar":

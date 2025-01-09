@@ -102,20 +102,20 @@ export const messagesSection = async (ctx, lang) => {
 // Asosiy menyu
 export const sendHomeMenu = async (ctx, lang) => {
   const keyboard = new Keyboard()
+    .text(lang === "UZB" ? "🧑🏾‍🤝‍🧑🏾 Foydalanuvchilar" : "🧑🏾‍🤝‍🧑🏾 Пользователи")
+    .text(lang === "UZB" ? "🪧 Murojaatlar" : "🪧 Запросы")
+    .row()
     .text(lang === "UZB" ? "🗃️ Adabiyotlar" : "🗃 Литература")
     .text(lang === "UZB" ? "📣 Xabarlar" : "📣 Сообщения")
     .row()
-    .text(lang === "UZB" ? "🪧 Murojaatlar" : "🪧 Запросы")
-    .text(lang === "UZB" ? "🧑🏾‍🤝‍🧑🏾 Foydalanuvchilar" : "🧑🏾‍🤝‍🧑🏾 Пользователи")
-    .row()
-    .text(lang === "UZB" ? "♻️ Tilni o'zgartirish" : "♻️ Изменить язык")
+    .text(lang === "UZB" ? "🌐 Tilni o'zgartirish" : "🌐 Изменить язык")
     .oneTime()
     .resized();
 
-  await ctx.reply(
-    lang === "UZB" ? "<b>Asosiy menyu:</b>" : "<b>Главное меню:</b>",
-    { parse_mode: "HTML", reply_markup: keyboard }
-  );
+  await ctx.reply(lang === "UZB" ? "<b>Asosiy menyu:</b>" : "<b>Главное меню:</b>", {
+    parse_mode: "HTML",
+    reply_markup: keyboard,
+  });
 };
 
 export const requestsSection = async (ctx, lang) => {

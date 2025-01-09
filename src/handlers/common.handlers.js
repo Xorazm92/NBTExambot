@@ -405,8 +405,6 @@ export const handleMenu = async (ctx, lang) => {
             await requestsSection(ctx, lang);
         } else if (message === "📚 Adabiyotlar" || message === "📚 Литература") {
             await literatureSection(ctx, lang);
-        } else if (message === "📨 Xabarlar" || message === "📨 Сообщения") {
-            await messagesSection(ctx, lang);
         }
     } catch (error) {
         console.error('Menyu bo\'limini tanlashda xatolik:', error);

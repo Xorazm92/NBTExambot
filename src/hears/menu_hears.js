@@ -1,4 +1,4 @@
-import { bot } from "../config/bot.js";
+import bot from "../config/bot.js";
 import { 
     userSection, 
     requestsSection, 
@@ -15,7 +15,9 @@ import {
     handleRequiredDocuments,
     handleComplaintsAndSuggestions,
     handleCallCenter,
-    startComplaintFlow
+    startComplaintFlow,
+    handleNewMessages,
+    handleAllNews
 } from "../handlers/common.handlers.js";
 import User from "../models/user.js";
 
@@ -128,21 +130,13 @@ bot.hears(["🧑‍🤝‍🧑 Foydalanuvchi ro'yxati", "🧑‍🤝‍🧑 Сп
 bot.hears(["📬 Yangi xabarlar", "📬 Новые сообщения"], async (ctx) => {
     const user = await User.findOne({ user_id: ctx.message.from.id });
     const lang = user?.user_lang || "UZB";
-    await ctx.reply(
-        lang === "UZB" 
-            ? "Yangi xabarlar tez orada qo'shiladi."
-            : "Новые сообщения будут добавлены в ближайшее время."
-    );
+    await handleNewMessages(ctx, lang);
 });
 
-bot.hears(["📨 Barcha xabarlar", "📨 Все сообщения"], async (ctx) => {
+bot.hears(["📰 Barcha xabarlar", "📰 Все сообщения"], async (ctx) => {
     const user = await User.findOne({ user_id: ctx.message.from.id });
     const lang = user?.user_lang || "UZB";
-    await ctx.reply(
-        lang === "UZB" 
-            ? "Barcha xabarlar tez orada qo'shiladi."
-            : "Все сообщения будут добавлены в ближайшее время."
-    );
+    await handleAllNews(ctx, lang);
 });
 
 // Tilni o'zgartirish
