@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "test": "node --test test/",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prod":"npx pm2 restart ngk_bot"
   },
   "keywords": [],
   "author": "",
